@@ -1,3 +1,11 @@
+# 忽略 AppData 和其他非项目内容
+/AppData/
+/*.log
+*.jtx
+__pycache__/
+/*.pyc
+.DS_Store
+.env
 # 虚拟环境
 venv/
 env/
