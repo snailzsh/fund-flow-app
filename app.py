@@ -239,10 +239,20 @@ def test_api():
     logger.info("Test API endpoint called")
     return jsonify({"status": "ok", "message": "API is working"})
 
-if __name__ == '__main__':
-    # 启动后台任务
-    start_background_tasks()
+@app.route('/health')
+def health_check():
+    """健康检查端点，用于云平台监控"""
+    global last_update, cached_data
     
-    # 启动Flask应用
-    port = int(os.environ.get('PORT', 8080))
-    app.run(debug=False, host='0.0.0.0', port=port)
+    status = {
+        "status": "healthy",
+        "timestamp": datetime.datetime.now().isoformat(),
+        "last_data_update": last_update.isoformat() if last_update else None,
+        "cache_status": "loaded" if cached_data else "empty"
+    }
+    
+    return jsonify(status), 200
+
+# ✅ 关键：Render 启动 gunicorn app:app 也能执行到这里
+start_background_tasks()
+
