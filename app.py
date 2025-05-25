@@ -256,4 +256,6 @@ def health_check():
 # ✅ 关键：Render 启动 gunicorn app:app 也能执行到这里
 start_background_tasks()
 # --- force redeploy at 2025-05-25 ---
+# trigger render rebuild
+
 
