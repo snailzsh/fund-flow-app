@@ -246,3 +246,6 @@ if __name__ == '__main__':
     # 启动Flask应用
     port = int(os.environ.get('PORT', 8080))
     app.run(debug=False, host='0.0.0.0', port=port)
+
+# 给 WSGI 使用
+application = app
